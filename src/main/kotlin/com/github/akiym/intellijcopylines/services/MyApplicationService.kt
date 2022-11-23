@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.akiym.intellijcopylines.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.akiym.intellijcopylines.MyBundle
 
 class MyApplicationService {
 
