@@ -1,18 +1,28 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.akiym.intellijcopylines</id>
-    <name>IntelliJ Platform Plugin intellij-copy-lines</name>
-    <vendor>akiym</vendor>
+    <name>Copy Lines</name>
+    <vendor email="t.akiym@gmail.com" url="https://github.com/akiym">Takumi Akiyama</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.akiym.intellijcopylines.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.akiym.intellijcopylines.services.MyProjectService"/>
+        <applicationConfigurable
+                instance="com.github.akiym.intellijcopylines.settings.ApplicationSettingsConfigurable"
+                id="com.github.akiym.intellijcopylines.settings.ApplicationSettingsConfigurable"
+                displayName="Copy Lines"/>
+        <applicationService
+                serviceImplementation="com.github.akiym.intellijcopylines.settings.ApplicationSettingsState"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="com.github.akiym.intellijcopylines.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+    <actions>
+        <action id="CopyLines.CopyLines"
+                class="com.github.akiym.intellijcopylines.actions.CopyLinesAction"
+                text="Copy Lines"
+                description="Copy lines"
+                icon="AllIcons.Actions.Copy">
+            <add-to-group group-id="EditorPopupMenu" anchor="last" />
+        </action>
+    </actions>
 </idea-plugin>
+
