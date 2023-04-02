@@ -3,8 +3,6 @@ package com.github.akiym.intellijcopylines.settings
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.ui.DialogPanel
 import com.intellij.ui.dsl.builder.*
-import com.intellij.ui.dsl.gridLayout.HorizontalAlign
-import com.intellij.ui.dsl.gridLayout.VerticalAlign
 
 @Suppress("UnstableApiUsage")
 class ApplicationSettingsConfigurable : Configurable {
@@ -18,12 +16,12 @@ class ApplicationSettingsConfigurable : Configurable {
         panel = panel {
             row {
                 label("Format:")
-                    .verticalAlign(VerticalAlign.TOP)
+                    .align(AlignY.TOP)
                     .gap(RightGap.SMALL)
                 textArea()
                     .bindText(model::format)
                     .rows(5)
-                    .horizontalAlign(HorizontalAlign.FILL)
+                    .align(AlignX.FILL)
             }.layout(RowLayout.PARENT_GRID).rowComment("""
                 |${'$'}{FILE}: Relative file path from your project
                 |${'$'}{LINE}: Selected line numbers (see below)
@@ -33,12 +31,12 @@ class ApplicationSettingsConfigurable : Configurable {
 
             row {
                 label("${'$'}{LINE} format:")
-                    .verticalAlign(VerticalAlign.TOP)
+                    .align(AlignY.TOP)
                     .gap(RightGap.SMALL)
                 textArea()
                     .bindText(model::lineFormat)
                     .rows(5)
-                    .horizontalAlign(HorizontalAlign.FILL)
+                    .align(AlignX.FILL)
             }.layout(RowLayout.PARENT_GRID).rowComment("""
                 |${'$'}{START}: Starting line number
                 |${'$'}{END}: Ending line number
