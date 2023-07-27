@@ -23,6 +23,13 @@
                 icon="AllIcons.Actions.Copy">
             <add-to-group group-id="EditorPopupMenu" anchor="last" />
         </action>
+        <action id="CopyLines.CopyFilename"
+                class="com.github.akiym.intellijcopylines.actions.CopyFilenameAction"
+                text="Copy Project Relative Path"
+                description="Copy path"
+                icon="AllIcons.Actions.Copy">
+            <add-to-group group-id="EditorPopupMenu" anchor="last" />
+        </action>
     </actions>
 </idea-plugin>
 
