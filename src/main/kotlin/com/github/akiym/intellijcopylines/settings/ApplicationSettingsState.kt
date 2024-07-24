@@ -27,11 +27,11 @@ class ApplicationSettingsState : PersistentStateComponent<ApplicationSettingsSta
 
     data class Model(
         var format: String = """
-            |`${'$'}{FILE}` L${'$'}{LINE}
+            |`${'$'}{FILE}` ${'$'}{LINE}行目
             |```${'$'}{EXTENSION}
             |${'$'}{TEXT}
             |```
         """.trimMargin(),
-        var lineFormat: String = "${'$'}{START}-${'$'}{END}",
+        var lineFormat: String = "${'$'}{START}~${'$'}{END}",
     )
 }
