@@ -10,7 +10,7 @@ import kotlin.io.path.pathString
 
 class CopyFilenameAction : AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
-        val psiFile = e.getRequiredData(CommonDataKeys.PSI_FILE)
+        val psiFile = e.getData(CommonDataKeys.PSI_FILE) ?: return
         val basePath = e.project?.basePath
         val file = if (basePath != null) {
             Path(basePath).relativize(psiFile.virtualFile.toNioPath()).pathString

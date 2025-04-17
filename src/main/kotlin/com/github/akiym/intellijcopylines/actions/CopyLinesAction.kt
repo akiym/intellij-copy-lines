@@ -16,7 +16,7 @@ class CopyLinesAction : AnAction() {
         get() = ApplicationSettingsState.instance.state
 
     override fun actionPerformed(e: AnActionEvent) {
-        val editor = e.getRequiredData(CommonDataKeys.EDITOR)
+        val editor = e.getData(CommonDataKeys.EDITOR) ?: return
 
         if (editor.caretModel.caretsAndSelections.size > 1) {
             return
@@ -43,7 +43,7 @@ class CopyLinesAction : AnAction() {
             )
         )
 
-        val psiFile = e.getRequiredData(CommonDataKeys.PSI_FILE)
+        val psiFile = e.getData(CommonDataKeys.PSI_FILE) ?: return
         val basePath = e.project?.basePath
         val file = if (basePath != null) {
             Path(basePath).relativize(psiFile.virtualFile.toNioPath()).pathString
