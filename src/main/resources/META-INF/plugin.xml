@@ -13,6 +13,13 @@
                 displayName="Copy Lines"/>
         <applicationService
                 serviceImplementation="com.github.akiym.intellijcopylines.settings.ApplicationSettingsState"/>
+        <projectConfigurable
+                parentId="com.github.akiym.intellijcopylines.settings.ApplicationSettingsConfigurable"
+                instance="com.github.akiym.intellijcopylines.settings.ProjectSettingsConfigurable"
+                id="com.github.akiym.intellijcopylines.settings.ProjectSettingsConfigurable"
+                displayName="Project Settings"/>
+        <projectService
+                serviceImplementation="com.github.akiym.intellijcopylines.settings.ProjectSettingsState"/>
     </extensions>
 
     <actions>

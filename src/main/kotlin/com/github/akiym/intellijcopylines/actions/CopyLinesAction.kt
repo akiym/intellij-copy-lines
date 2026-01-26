@@ -2,14 +2,13 @@ package com.github.akiym.intellijcopylines.actions
 
 import com.github.akiym.intellijcopylines.settings.ApplicationSettingsState
 import com.github.akiym.intellijcopylines.utils.SimpleStrSubstitutor
+import com.github.akiym.intellijcopylines.utils.getRelativePath
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.ide.CopyPasteManager
 import com.intellij.openapi.util.TextRange
 import java.awt.datatransfer.StringSelection
-import kotlin.io.path.Path
-import kotlin.io.path.pathString
 
 class CopyLinesAction : AnAction() {
     private val state
@@ -44,12 +43,8 @@ class CopyLinesAction : AnAction() {
         )
 
         val psiFile = e.getData(CommonDataKeys.PSI_FILE) ?: return
-        val basePath = e.project?.basePath
-        val file = if (basePath != null) {
-            Path(basePath).relativize(psiFile.virtualFile.toNioPath()).pathString
-        } else {
-            psiFile.virtualFile.path
-        }
+        val project = e.project ?: return
+        val file = getRelativePath(project, psiFile.virtualFile)
 
         val model = Model(
             startLine = startLine + 1,
